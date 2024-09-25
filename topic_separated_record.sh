@@ -11,7 +11,7 @@ echo bag_recorderを起動します
 echo "${save_path} にbagを保存します"
 mkdir -p "${save_path}"
 cd "${save_path}"
-ros2 launch whill_bringup bag_recoder_launch.py
+ros2 launch whill_bringup topic_separated_record_launch.py
 
 bash
 
