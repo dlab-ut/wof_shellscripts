@@ -1,1 +1,1 @@
-動かないと思う
+all_topic_play.shは動かなそう
