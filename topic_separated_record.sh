@@ -33,6 +33,7 @@ EOL
 
 ros2 launch py_launch_wof topic_separated_record_launch.py 
 
+
 bash
 
 

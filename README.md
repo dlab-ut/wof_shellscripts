@@ -1,0 +1,1 @@
+all_topic_play.shは動かなそう
