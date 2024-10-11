@@ -1,0 +1,4 @@
+cd ~/autoware
+source install/setup.bash
+echo odom_to_twist_cov_stampを起動します
+ros2 launch ros2_odometry_twist_converter odom_to_twist_cov_stamp.launch.py

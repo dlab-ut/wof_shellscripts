@@ -4,16 +4,19 @@ YMD=`date "+%y-%m-%d"`
 TIM=`date "+%T"`
 
 source ~/.bashrc
-cd ~/ros2_ws
-source install/setup.bash
 
-base_dir="/mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag" #hddのパスに変更
-save_path="${base_dir}/${YMD}/${TIM}"
+base_dir="/mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag" #ssdのパス
+save_path="${base_dir}/${YMD}/${TIM}/topic"
 echo bag_recorderを起動します
 echo "${save_path} にbagを保存します"
 mkdir -p "${save_path}"
+
+cd ~/ros2_ws
+source install/setup.bash
+
 cd "${save_path}"
-ros2 launch whill_bringup bag_recoder_launch.py
+ros2 launch whill_bringup topic_separated_record_launch.py
+# ros2 launch whill_bringup (unused)topic_separated_record_launch.py
 
 bash
 

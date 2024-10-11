@@ -4,16 +4,34 @@ YMD=`date "+%y-%m-%d"`
 TIM=`date "+%T"`
 
 source ~/.bashrc
-cd ~/ros2_ws
-source install/setup.bash
 
-base_dir="/mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag" #hddのパスに変更
-save_path="${base_dir}/${YMD}/${TIM}"
+base_dir="/mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag" #ssdのパス
+save_path="${base_dir}/${YMD}/${TIM}/topic"
 echo bag_recorderを起動します
 echo "${save_path} にbagを保存します"
 mkdir -p "${save_path}"
+
+cd ~/ros2_ws
+source install/setup.bash
+
+cd ~/ros2_ws/src/wof_shellscripts
+
 cd "${save_path}"
-ros2 launch whill_bringup bag_recoder_launch.py
+
+# マージ用のファイル作成
+mkdir ../merge 
+cat <<EOL > ../merge/merge_example.sh
+ros2 bag convert -i ../topic/tf/ -i ../topic/velodyne_points/ -o tf_velodyne.yaml
+EOL
+
+cat <<EOL > ../merge/tf_velodyne.yaml
+output_bags:
+- uri: tf_tf_static_velodyne  # マージ後のバッグファイル名
+  all_topics: true  # すべてのトピックを含む
+  all_services: true  # すべてのサービスを含む
+EOL
+
+ros2 launch py_launch_wof topic_separated_record_launch.py 
 
 bash
 
