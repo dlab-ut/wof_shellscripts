@@ -1,9 +1,9 @@
 #!/bin/bash
-
 YMD=`date "+%y-%m-%d"`
 TIM=`date "+%T"`
-
 source ~/.bashrc
+
+#保存する場所の選択
 
 base_dir="/mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag" #ssdのパス
 save_path="${base_dir}/${YMD}/${TIM}/topic"
@@ -13,9 +13,6 @@ mkdir -p "${save_path}"
 
 cd ~/ros2_ws
 source install/setup.bash
-
-cd ~/ros2_ws/src/wof_shellscripts
-
 cd "${save_path}"
 
 # マージ用のファイル作成
@@ -32,7 +29,6 @@ output_bags:
 EOL
 
 ros2 launch py_launch_wof topic_separated_record_launch.py 
-
 
 bash
 

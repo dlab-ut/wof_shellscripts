@@ -1,0 +1,3 @@
+base_dirs:
+  - /mnt/81947752-0abf-4e5c-8303-2bcc5733f8a5/Rosbag
+  - /home/door/ros2_ws/Rosbag
